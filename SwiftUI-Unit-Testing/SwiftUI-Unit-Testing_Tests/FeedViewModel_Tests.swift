@@ -16,13 +16,19 @@ import XCTest
 // https://www.appsloveworld.com/swift/100/123/strange-compilation-error-with-testable-import
 
 class FeedViewModel_Tests: XCTestCase {
+    
+    var viewModel: FeedViewModel?
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        viewModel = FeedViewModel(isPremium: Bool.random())
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        
+        viewModel = nil
     }
     
     // MARK: - userIsPremium Tests
@@ -122,9 +128,23 @@ class FeedViewModel_Tests: XCTestCase {
         // XCTAssertLessThanOrEqual
     }
 
-    func test_FeedViewModel_dataArray_shouldNotAddBlankString() {
+    func test_FeedViewModel_dataArray_shouldNotAddBlankString_v1() {
         // Given
         let vm = FeedViewModel(isPremium: Bool.random())
+        
+        // When
+        vm.addItem("")
+        
+        // Then
+        XCTAssertTrue(vm.dataArray.isEmpty)
+    }
+    
+    func test_FeedViewModel_dataArray_shouldNotAddBlankString_v2() {
+        // Given
+        guard let vm = viewModel else {
+            XCTFail()
+            return
+        }
         
         // When
         vm.addItem("")
