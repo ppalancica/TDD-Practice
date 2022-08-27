@@ -15,6 +15,9 @@
 		B3C5D6F328BA1A180010C2DA /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C5D6F228BA1A180010C2DA /* FeedView.swift */; };
 		B3C5D6FB28BA1C890010C2DA /* SwiftUI_Unit_Testing_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C5D6FA28BA1C890010C2DA /* SwiftUI_Unit_Testing_Tests.swift */; };
 		B3C5D70228BA1DEC0010C2DA /* FeedViewModel_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C5D70128BA1DEC0010C2DA /* FeedViewModel_Tests.swift */; };
+		B3C5D70528BAD0FC0010C2DA /* FeedMockDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C5D70428BAD0FC0010C2DA /* FeedMockDataService.swift */; };
+		B3C5D70C28BAD21E0010C2DA /* FeedDataServiceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C5D70B28BAD21E0010C2DA /* FeedDataServiceType.swift */; };
+		B3C5D70E28BAD27F0010C2DA /* FeedMockDataService_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C5D70D28BAD27F0010C2DA /* FeedMockDataService_Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,9 @@
 		B3C5D6F828BA1C890010C2DA /* SwiftUI-Unit-Testing_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SwiftUI-Unit-Testing_Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B3C5D6FA28BA1C890010C2DA /* SwiftUI_Unit_Testing_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_Unit_Testing_Tests.swift; sourceTree = "<group>"; };
 		B3C5D70128BA1DEC0010C2DA /* FeedViewModel_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel_Tests.swift; sourceTree = "<group>"; };
+		B3C5D70428BAD0FC0010C2DA /* FeedMockDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMockDataService.swift; sourceTree = "<group>"; };
+		B3C5D70B28BAD21E0010C2DA /* FeedDataServiceType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDataServiceType.swift; sourceTree = "<group>"; };
+		B3C5D70D28BAD27F0010C2DA /* FeedMockDataService_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedMockDataService_Tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,7 @@
 			children = (
 				B3C5D6FA28BA1C890010C2DA /* SwiftUI_Unit_Testing_Tests.swift */,
 				B3C5D70128BA1DEC0010C2DA /* FeedViewModel_Tests.swift */,
+				B3C5D70D28BAD27F0010C2DA /* FeedMockDataService_Tests.swift */,
 			);
 			path = "SwiftUI-Unit-Testing_Tests";
 			sourceTree = "<group>";
@@ -108,6 +115,8 @@
 		B3C5D70328BA1F8D0010C2DA /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				B3C5D70B28BAD21E0010C2DA /* FeedDataServiceType.swift */,
+				B3C5D70428BAD0FC0010C2DA /* FeedMockDataService.swift */,
 				B3C5D6F028BA19BC0010C2DA /* FeedViewModel.swift */,
 				B3C5D6F228BA1A180010C2DA /* FeedView.swift */,
 			);
@@ -216,8 +225,10 @@
 			files = (
 				B3C5D6F328BA1A180010C2DA /* FeedView.swift in Sources */,
 				B3C5D6E528BA199F0010C2DA /* ContentView.swift in Sources */,
+				B3C5D70528BAD0FC0010C2DA /* FeedMockDataService.swift in Sources */,
 				B3C5D6E328BA199F0010C2DA /* SwiftUI_Unit_TestingApp.swift in Sources */,
 				B3C5D6F128BA19BC0010C2DA /* FeedViewModel.swift in Sources */,
+				B3C5D70C28BAD21E0010C2DA /* FeedDataServiceType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B3C5D70228BA1DEC0010C2DA /* FeedViewModel_Tests.swift in Sources */,
+				B3C5D70E28BAD27F0010C2DA /* FeedMockDataService_Tests.swift in Sources */,
 				B3C5D6FB28BA1C890010C2DA /* SwiftUI_Unit_Testing_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

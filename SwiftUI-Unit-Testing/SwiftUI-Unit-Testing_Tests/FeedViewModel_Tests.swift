@@ -6,6 +6,7 @@
 //
 
 import XCTest
+import Combine
 
 @testable import SwiftUI_Unit_Testing
 
@@ -18,6 +19,7 @@ import XCTest
 class FeedViewModel_Tests: XCTestCase {
     
     var viewModel: FeedViewModel?
+    var cancelables = Set<AnyCancellable>()
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -310,5 +312,47 @@ class FeedViewModel_Tests: XCTestCase {
         } catch {
             XCTFail()
         }
+    }
+    
+    func test_FeedViewModel_downloadWithEscaping_shouldReturnItems() {
+        // Given
+        let vm = FeedViewModel(isPremium: Bool.random())
+        
+        // When
+        let expectation = XCTestExpectation(description: "Should return items after 3 seconds")
+        
+        vm.$dataArray
+            .dropFirst()
+            .sink { returnedItems in
+                expectation.fulfill()
+            }
+            .store(in: &cancelables)
+        
+        vm.downloadWithEscaping()
+        
+        // Then
+        wait(for: [expectation], timeout: 5)
+        XCTAssertGreaterThan(vm.dataArray.count, 0)
+    }
+    
+    func test_FeedViewModel_downloadWithCombine_shouldReturnItems() {
+        // Given
+        let vm = FeedViewModel(isPremium: Bool.random())
+        
+        // When
+        let expectation = XCTestExpectation(description: "Should return items after a second")
+        
+        vm.$dataArray
+            .dropFirst()
+            .sink { returnedItems in
+                expectation.fulfill()
+            }
+            .store(in: &cancelables)
+        
+        vm.downloadWithCombine()
+        
+        // Then
+        wait(for: [expectation], timeout: 5)
+        XCTAssertGreaterThan(vm.dataArray.count, 0)
     }
 }

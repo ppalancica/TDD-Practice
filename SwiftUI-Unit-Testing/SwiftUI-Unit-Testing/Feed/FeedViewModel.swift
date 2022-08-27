@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import UIKit
+import Combine
 
 class FeedViewModel: ObservableObject {
     
@@ -14,8 +14,12 @@ class FeedViewModel: ObservableObject {
     @Published var dataArray: [String] = []
     @Published var selectedItem: String? = nil
     
-    init(isPremium: Bool) {
+    let feedDataService: FeedDataServiceType
+    var cancelables = Set<AnyCancellable>()
+    
+    init(isPremium: Bool, feedDataService: FeedDataServiceType = FeedMockDataService(items: nil)) {
         self.isPremium = isPremium
+        self.feedDataService = feedDataService
     }
     
     func addItem(_ item: String) {
@@ -46,5 +50,21 @@ class FeedViewModel: ObservableObject {
     enum DataError: LocalizedError {
         case noData
         case itemNotFound
+    }
+    
+    func downloadWithEscaping() {
+        feedDataService.downloadItemsWithEscaping { [weak self] returnedItems in
+            self?.dataArray = returnedItems
+        }
+    }
+    
+    func downloadWithCombine() {
+        feedDataService.downloadItemsWithCombine()
+            .sink { _ in
+                //
+            } receiveValue: { [weak self] returnedItems in
+                self?.dataArray = returnedItems
+            }
+            .store(in: &cancelables) // Storing the subscriber in cancelables
     }
 }
