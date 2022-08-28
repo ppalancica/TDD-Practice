@@ -335,7 +335,7 @@ class FeedViewModel_Tests: XCTestCase {
         XCTAssertGreaterThan(vm.dataArray.count, 0)
     }
     
-    func test_FeedViewModel_downloadWithCombine_shouldReturnItems() {
+    func test_FeedViewModel_downloadWithCombine_shouldReturnItems_v1() {
         // Given
         let vm = FeedViewModel(isPremium: Bool.random())
         
@@ -354,5 +354,35 @@ class FeedViewModel_Tests: XCTestCase {
         // Then
         wait(for: [expectation], timeout: 5)
         XCTAssertGreaterThan(vm.dataArray.count, 0)
+    }
+    
+    func test_FeedViewModel_downloadWithCombine_shouldReturnItems_v2() {
+        // Given
+        let items = [
+            UUID().uuidString,
+            UUID().uuidString,
+            UUID().uuidString,
+            UUID().uuidString,
+            UUID().uuidString
+        ]
+        let dataService: FeedDataServiceType = FeedMockDataService(items: items)
+        let vm = FeedViewModel(isPremium: Bool.random(), feedDataService: dataService)
+        
+        // When
+        let expectation = XCTestExpectation(description: "Should return items after a second")
+        
+        vm.$dataArray
+            .dropFirst()
+            .sink { returnedItems in
+                expectation.fulfill()
+            }
+            .store(in: &cancelables)
+        
+        vm.downloadWithCombine()
+        
+        // Then
+        wait(for: [expectation], timeout: 5)
+        XCTAssertGreaterThan(vm.dataArray.count, 0)
+        XCTAssertEqual(vm.dataArray.count, items.count)
     }
 }
